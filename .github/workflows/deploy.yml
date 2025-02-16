@@ -1,16 +1,25 @@
-name: Deploy to Netlify
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - master  # Change this if your deployment branch is different
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      - name: Trigger Netlify Build Hook
-        run: curl -X POST -d '{}' https://api.netlify.com/build_hooks/67b1a980b4e65820f14e4d1e
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "."
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
