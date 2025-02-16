@@ -1,0 +1,16 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    branches:
+      - main  # Change this if your deployment branch is different
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Trigger Netlify Build Hook
+        run: curl -X POST -d '{}' https://api.netlify.com/build_hooks/67b1a980b4e65820f14e4d1e
