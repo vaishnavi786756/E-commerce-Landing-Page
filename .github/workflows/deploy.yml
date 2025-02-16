@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master
+      - master  # Update the branch name to 'master'
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # Updated to the latest version
+        uses: actions/upload-pages-artifact@v2  # Correct action for Pages artifact upload
 
       - name: Deploy to GitHub Pages
         id: deployment
