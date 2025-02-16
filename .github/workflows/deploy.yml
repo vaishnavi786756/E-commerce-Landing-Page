@@ -3,7 +3,7 @@ name: Deploy to Netlify
 on:
   push:
     branches:
-      - main  # Change this if your deployment branch is different
+      - master  # Change this if your deployment branch is different
 
 jobs:
   deploy:
