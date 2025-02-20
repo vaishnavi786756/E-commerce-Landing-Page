@@ -1,9 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy to Vercel
 
 on:
   push:
     branches:
-      - master  # Trigger the workflow on pushes to the 'master' branch
+      - main  # Deploy on push to the 'main' branch
 
 jobs:
   deploy:
@@ -11,14 +11,15 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Updated to latest version
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4  # Ensures Node.js is set up
+        with:
+          node-version: 18  # Use an appropriate Node.js version
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1  # Updated version
+      - name: Install Vercel CLI
+        run: npm install -g vercel
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+      - name: Deploy to Vercel
+        run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
